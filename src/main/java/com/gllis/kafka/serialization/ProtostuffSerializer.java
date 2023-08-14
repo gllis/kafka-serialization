@@ -20,10 +20,10 @@ public class ProtostuffSerializer<T> implements Serializer<T> {
 
 
     @Override
-    public byte[] serialize(String topic, T data) {
+    public byte[] serialize(String topic, T obj) {
         LinkedBuffer buffer = LinkedBuffer.allocate();
-        Schema schema = ProtostuffUtil.getSchema(data.getClass());
-        byte[] serializeData = ProtostuffIOUtil.toByteArray(data, schema, buffer);
+        Schema schema = ProtostuffUtil.getSchema(obj.getClass());
+        byte[] serializeData = ProtostuffIOUtil.toByteArray(obj, schema, buffer);
         buffer.clear();
         return serializeData;
     }

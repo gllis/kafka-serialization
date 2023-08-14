@@ -14,16 +14,16 @@ import java.io.ObjectOutputStream;
  */
 public class JavaSerializer implements Serializer<Object> {
     @Override
-    public byte[] serialize(String topic, Object data) {
+    public byte[] serialize(String topic, Object obj) {
         try {
             ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
             ObjectOutputStream objectStream = new ObjectOutputStream(byteStream);
-            objectStream.writeObject(data);
+            objectStream.writeObject(obj);
             objectStream.flush();
             objectStream.close();
             return byteStream.toByteArray();
         } catch (IOException e) {
-            throw new RuntimeException("Can't serialize object:" + data, e);
+            throw new RuntimeException("Can't serialize object:" + obj, e);
         }
     }
 }
